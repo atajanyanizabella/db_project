@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from model.struct import port_struct, port_create_struct
-from connection import get_db
+from model.connection import get_db
 from model.tables import Port
 
 from . import CHUNK_SIZE
@@ -14,7 +14,7 @@ router = APIRouter()
 
 
 @router.get("/", response_model=list[port_struct])
-def read(p: int = 0: db: Session = Depends(get_db)):
+def read(p: int = 0, db: Session = Depends(get_db)):
     skip = p * CHUNK_SIZE
     limit = CHUNK_SIZE
     return db.query(Port).order_by(Port.id).offset(skip).limit(limit).all()

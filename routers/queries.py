@@ -40,9 +40,9 @@ def join(p: int = 0, key: int = id, db: Session = Depends(get_db)):
         .join(Port, Port.id == Arrival.port_id)
     )
     match key:
-        case "id":
+        case "port_id":
             query = query.order_by(Port.id)
-        case "id":
+        case "ship_id":
             query = query.order_by(Ship.id)
     query = query.offset(skip).limit(limit).all()
     return [(op, sub) for _, op, sub in query]
@@ -63,6 +63,6 @@ def group_by(p: int = 0, db: Session = Depends(get_db)):
 
 @router.put("/update")
 def update(db: Session = Depends(get_db)):
-    db.query(Port).filter(Port.day_price < 15000).update({"day_price": Port.day_price * 2})
+    db.query(Port).filter(Port.day_price < 15000).update({"day_price": Port.day_price * 3})
     db.commit()
     return db

@@ -9,7 +9,7 @@ url = URL.create(drivername="postgresql",
                  username="admin",
                  password="secret",
                  host="localhost",
-                 database="ship_register",
+                 database="port_register",
                  port=5432)
 
 engine = create_engine(url)

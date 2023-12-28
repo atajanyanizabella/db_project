@@ -11,7 +11,7 @@ from model.tables import Base
 # access to the values within the .ini file in use.
 config = context.config
 
-config.set_main_option("sqlalchemy.url", "postgresql://admin:secret@localhost/ship_registry")
+config.set_main_option("sqlalchemy.url", "postgresql://admin:secret@localhost/port_registry")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
